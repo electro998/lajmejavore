@@ -249,7 +249,7 @@ function generateFeed({ posts = [], metadata = {} }) {
     title: metadata.title || '',
     description: metadata.description,
     site_url: homepage,
-    feed_url: `${homepage}/feed.xml`,
+    feed_url: `${homepage}/feed/instant-articles`,
     copyright: `${new Date().getFullYear()} ${metadata.title}`,
     language: metadata.language,
     pubDate: new Date(),
