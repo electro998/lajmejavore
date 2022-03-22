@@ -9,7 +9,7 @@ module.exports = function feed(nextConfig = {}) {
   const plugin = {
     name: 'Feed',
     outputDirectory: outputDirectory || './public',
-    outputName: outputName || 'feeds2.xml',
+    outputName: outputName || 'feed.xml',
     getData: getFeedData,
     generate: generateFeed,
   };
