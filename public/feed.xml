@@ -1,78 +1,75 @@
-<rss version="2.0"
-xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>News Publisher</title>
-    <link>http://www.example.com/</link>
-    <description>
-      Read our awesome news, every day.
-    </description>
-    <language>en-us</language>
-    <lastBuildDate>2014-12-11T04:44:16Z</lastBuildDate>
-    <item>
-      <title>This is an Instant Article</title>
-      <link>http://example.com/article.html</link>
-      <guid>2fd4e1c67a2d28fced849ee1bb76e7391b93eb12</guid>
-      <pubDate>2014-12-11T04:44:16Z</pubDate>
-      <author>Mr. Author</author>
-      <description>This is my first Instant Article. How awesome is this?</description>
-      <content:encoded>
-        <![CDATA[
-        <!doctype html>
-        <html lang="en" prefix="op: http://media.facebook.com/op#">
-          <head>
-            <meta charset="utf-8">
-            <link rel="canonical" href="http://example.com/article.html">
-            <meta property="op:markup_version" content="v1.0">
-          </head>
-          <body>
-            <article>
-              <header>
-                <!— Article header goes here -->
-              </header>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+    <channel>
+        <title>{{@site.title}} </title>
+        <description>{{@site.description}}</description>
+        <link>{{@site.url}}</link>
+        <image>
+            <url>{{@site.url}}/favicon.png</url>
+            <title>{{@site.title}}</title>
+            <link>{{@site.url}}</link>
+        </image>
+        <lastBuildDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</lastBuildDate>
+        <atom:link href="{{@site.url}}" rel="self" type="application/rss+xml" />
+        <ttl>60</ttl>
 
-              <!— Article body goes here -->
+        {{#get "posts" limit="15" include="authors,tags"}}
+        {{#foreach posts}}
+        <item>
+            <title>
+                <![CDATA[ {{title}} ]]>
+            </title>
+            <link>{{url absolute="true"}}</link>
+            <description>
+                <![CDATA[ {{excerpt}} ]]>
+            </description>
+            <content:encoded>
+                <![CDATA[                 
+                    <html>
+                        <head>
+                            <link rel="canonical" href="{{url absolute=" true"}}" />
+                            <meta charset="utf-8" />
+                            <meta property="op:generator" content="facebook-instant-articles-sdk-php" />
+                            <meta property="op:generator:version" content="1.10.0" />
+                            <meta property="op:generator:application:version" content="4.2.1" />
+                            <meta property="op:generator:transformer" content="facebook-instant-articles-sdk-php" />
+                            <meta property="op:generator:transformer:version" content="1.10.0" />
+                            <meta property="op:markup_version" content="v1.0" />
+                            <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=default" />
+                            <meta property="fb:article_style" content="default" />
+                            <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=default">
+                        </head>
 
-              <footer>
-                <!— Article footer goes here -->
-              </footer>
-            </article>
-          </body>
-        </html>
-        ]]>
-      </content:encoded>
-    </item>
-    
-    <!— Another Article (Each Article must be represented as an <item>)  -->
-    <item>
-      <title>This is another Instant Article</title>
-      <link>http://example.com/another_article.html</link>
-      <pubDate>2017-02-14T05:20:00Z</pubDate>
-      <content:encoded>
-        <![CDATA[
-        <!doctype html>
-        <html lang="en" prefix="op: http://media.facebook.com/op#">
-          <head>
-            <meta charset="utf-8">
-            <link rel="canonical" href="http://example.com/another_article.html">
-            <meta property="op:markup_version" content="v1.0">
-          </head>
-          <body>
-            <article>
-              <header>
-                <!— Article header goes here -->
-              </header>
+                        <body>
+                            <article>
+                                <header>
+                                    <figure><img src="{{feature_image}}" alt="{{title}}"></figure>
+                                    <h1>{{title}}</h1>
+                                    <address><a>{{primary_author.name}}</a></address>
+                                    <h3 class="op-kicker">{{primary_tag.name}}</h3>
+                                    <meta property="fb:use_automatic_ad_placement" content="enable=true ad_density=default">
+                                    <figure class="op-ad"><iframe
+                                            src="https://www.facebook.com/adnw_request?placement=placement_id&adtype=banner300x250"
+                                            width="300" height="250"></iframe></figure>
+                                </header>
+                                {{content}}
+                                <footer></footer>
+                                <figure class="op-tracker">
+                                    <iframe>
+                                       TRACKING_CODE
+                                    </iframe>
+                                </figure>
+                            </article>
+                        </body>
+                    </html>]]>
 
-              <!— Article body goes here -->
+            </content:encoded>
+            <guid isPermaLink="false">{{id}}</guid>
+            <pubDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</pubDate>
+            <author>{{primary_author.name}}</author>
+        </item>
+        {{/foreach}}
+        {{/get}}
 
-              <footer>
-                <!— Article footer goes here -->
-              </footer>
-            </article>
-          </body>
-        </html>
-        ]]>
-      </content:encoded>
-    </item>
-    
-  </channel>
+    </channel>
 </rss>
