@@ -1,9 +1,0 @@
-import { GraphQLSchema } from 'graphql/type'
-import { feedTypeFactory } from 'web-feeds-graphql'
-
-const feedUrl = 'https://lajmejavore.info/feed/instant-articles'
-const field = feedTypeFactory(feedUrl)
-
-const schema = GraphQLSchema({
-  query: field,
-})
