@@ -1,9 +1,9 @@
 {
   "name": "lajmejavore",
-  "homepage": "https://lajmejavore.info/",
+  "homepage": "https://lajmejavore.info",
   "version": "0.1.0",
   "license": "MIT",
-  "author": "lajme <lajme@lajmejavore.info/>",
+  "author": "lajme <lajme@lajmejavore.info>",
   "scripts": {
     "build": "next build",
     "wpe-build": "npm run build",
